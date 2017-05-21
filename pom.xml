@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starters</artifactId>
+		<version>2.0.0.M1</version>
+	</parent>
+	<groupId>com.github.tonivade</groupId>
+	<artifactId>spring-boot-starter-respmvc</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<name>Spring Boot RespMvc Starter</name>
+	<description>Starter for building RespMvc applications using Spring Framework's
+		Reactive Web support</description>
+	<url>http://tonivade.github.io/resp-mvc/</url>
+	<repositories>
+		<repository>
+			<id>spring-boot-milestones</id>
+			<name>Spring Boot Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+		<repository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.tonivade</groupId>
+			<artifactId>resp-server</artifactId>
+			<version>0.7.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webflux</artifactId>
+		</dependency>
+	</dependencies>
+</project>
