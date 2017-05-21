@@ -3,9 +3,9 @@ package com.github.tonivade.resp.mvc.spring;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties("resp")
-public class RespMvcConfig {
+public class RespMvcProperties {
 
-  private String host = "locahost";
+  private String host = "localhost";
   private Integer port = 7081;
 
   public String getHost() {

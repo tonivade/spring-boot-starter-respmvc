@@ -1,8 +1,9 @@
 package com.github.tonivade.resp.mvc.spring;
 
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,21 +13,22 @@ import com.github.tonivade.resp.command.CommandWrapperFactory;
 
 @Configuration
 @ConditionalOnClass(RespServer.class)
+@EnableConfigurationProperties(RespMvcProperties.class)
 public class RespMvcAutoConfiguration {
 
   @Bean(initMethod = "start", destroyMethod = "stop")
-  public RespServer server(RespMvcConfig config, CommandSuite commands) {
-    return new RespServer(config.getHost(), config.getPort(), commands);
+  public RespServer server(RespMvcProperties properties, CommandSuite commands) {
+    return new RespServer(properties.getHost(), properties.getPort(), commands);
   }
 
   @Bean
-  @ConditionalOnBean
+  @ConditionalOnMissingBean
   public CommandSuite commandSuite(CommandWrapperFactory factory) {
     return new CommandSuite(factory);
   }
 
   @Bean
-  @ConditionalOnBean
+  @ConditionalOnMissingBean
   public CommandWrapperFactory commandWrapperFactory(AutowireCapableBeanFactory factory) {
     return new SpringCommandWrapperFactory(factory);
   }
