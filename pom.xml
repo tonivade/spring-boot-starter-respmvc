@@ -10,9 +10,8 @@
   <artifactId>spring-boot-starter-respmvc</artifactId>
   <version>0.1.0-SNAPSHOT</version>
   <name>Spring Boot RespMvc Starter</name>
-  <description>Starter for building RespMvc applications using Spring Framework's
-		Reactive Web support</description>
-  <url>http://tonivade.github.io/resp-mvc/</url>
+  <description>Starter for building RespMvc applications using Spring Framework's</description>
+  <url>http://github.com/tonivade/spring-boot-starter-respmvc/</url>
   <repositories>
     <repository>
       <id>spring-boot-milestones</id>
@@ -39,22 +38,6 @@
       <groupId>com.github.tonivade</groupId>
       <artifactId>resp-server</artifactId>
       <version>0.7.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webflux</artifactId>
     </dependency>
   </dependencies>
 </project>
