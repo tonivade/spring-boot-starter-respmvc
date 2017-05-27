@@ -6,14 +6,19 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.util.EnvironmentTestUtils;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.github.tonivade.resp.RespServer;
+import com.github.tonivade.resp.annotation.Command;
 import com.github.tonivade.resp.command.CommandSuite;
 import com.github.tonivade.resp.command.CommandWrapperFactory;
+import com.github.tonivade.resp.command.ICommand;
+import com.github.tonivade.resp.command.IRequest;
+import com.github.tonivade.resp.protocol.RedisToken;
 
 public class RespMvcAutoConfigurationTest {
 
@@ -58,15 +63,25 @@ public class RespMvcAutoConfigurationTest {
 }
 
 @Configuration
+@EnableAutoConfiguration
 class EmptyConfiguration {
 }
 
 @Configuration
+@EnableAutoConfiguration
 class NonEmptyConfiguration {
   @Bean
   public CommandSuite commandSuite(CommandWrapperFactory factory) {
     return new CommandSuite(factory) {{
       addCommand("test", request -> string("test"));
     }};
+  }
+}
+
+@Command("test")
+class TestCommand implements ICommand {
+  @Override
+  public RedisToken<?> execute(IRequest request) {
+    return string("test");
   }
 }

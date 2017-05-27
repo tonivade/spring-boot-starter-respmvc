@@ -4,6 +4,7 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,10 +24,10 @@ public class RespMvcAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public CommandSuite commandSuite(CommandWrapperFactory factory) {
-    return new CommandSuite(factory);
+  public CommandSuite commandSuite(ApplicationContext context) {
+    return new SpringCommandSuite(context);
   }
-
+  
   @Bean
   @ConditionalOnMissingBean
   public CommandWrapperFactory commandWrapperFactory(AutowireCapableBeanFactory factory) {
