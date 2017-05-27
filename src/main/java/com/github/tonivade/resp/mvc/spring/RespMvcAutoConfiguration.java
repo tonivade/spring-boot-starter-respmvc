@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2015-2017, Antonio Gabriel Muñoz Conejo <antoniogmc at gmail dot com>
+ * Distributed under the terms of the MIT License
+ */
 package com.github.tonivade.resp.mvc.spring;
 
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -27,7 +31,7 @@ public class RespMvcAutoConfiguration {
   public CommandSuite commandSuite(ApplicationContext context) {
     return new SpringCommandSuite(context);
   }
-  
+
   @Bean
   @ConditionalOnMissingBean
   public CommandWrapperFactory commandWrapperFactory(AutowireCapableBeanFactory factory) {
