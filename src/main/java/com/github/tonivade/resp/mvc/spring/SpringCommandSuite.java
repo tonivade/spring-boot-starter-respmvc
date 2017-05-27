@@ -1,5 +1,6 @@
 package com.github.tonivade.resp.mvc.spring;
 
+import org.springframework.beans.factory.CannotLoadBeanClassException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
 import org.springframework.context.ApplicationContext;
@@ -27,8 +28,9 @@ public class SpringCommandSuite extends CommandSuite {
   private void loadCommand(BeanDefinition beanDefinition) {
     try {
       addCommand(loadClass(beanDefinition));
-    } catch (ClassNotFoundException e) {
-      throw new RuntimeException(e);
+    } catch (ClassNotFoundException ex) {
+      throw new CannotLoadBeanClassException(beanDefinition.getResourceDescription(), /*bean name*/ null,
+                                             beanDefinition.getBeanClassName(), ex);
     }
   }
 
