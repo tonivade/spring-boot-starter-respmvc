@@ -85,7 +85,7 @@ class NonEmptyConfiguration {
 @Command("test")
 class TestCommand implements RespCommand {
   @Override
-  public RedisToken<?> execute(Request request) {
+  public RedisToken execute(Request request) {
     return string("test");
   }
 }
