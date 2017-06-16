@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.util.EnvironmentTestUtils;
+import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -59,7 +59,7 @@ public class RespMvcAutoConfigurationTest {
 
   private AnnotationConfigApplicationContext loadConfiguration(Class<?> config, String ... environment) {
     AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-    EnvironmentTestUtils.addEnvironment(context, environment);
+    TestPropertyValues.of(environment).applyTo(context);
     context.register(config, RespMvcAutoConfiguration.class);
     context.refresh();
     return context;
