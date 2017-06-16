@@ -39,8 +39,7 @@ public class SpringCommandSuite extends CommandSuite {
   }
 
   private Class<?> loadClass(BeanDefinition beanDefinition) throws ClassNotFoundException {
-    Class<?> forName = Class.forName(beanDefinition.getBeanClassName());
-    return forName;
+    return Class.forName(beanDefinition.getBeanClassName());
   }
 
   private ClassPathScanningCandidateComponentProvider scannerFor(ApplicationContext context) {
@@ -49,5 +48,4 @@ public class SpringCommandSuite extends CommandSuite {
     scanner.addIncludeFilter(new AnnotationTypeFilter(Command.class));
     return scanner;
   }
-
 }
