@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -12,13 +13,13 @@
   <name>Spring Boot RespMvc Starter</name>
   <description>Starter for building RespMvc applications using Spring Framework's</description>
   <url>http://github.com/tonivade/spring-boot-starter-respmvc/</url>
-	<inceptionYear>2017</inceptionYear>
+  <inceptionYear>2017</inceptionYear>
 
   <repositories>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</repository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
     <repository>
       <id>spring-boot-milestones</id>
       <name>Spring Boot Milestones</name>
@@ -31,16 +32,16 @@
     </repository>
   </repositories>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-	</distributionManagement>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
@@ -55,85 +56,85 @@
     <dependency>
       <groupId>com.github.tonivade</groupId>
       <artifactId>resp-server</artifactId>
-      <version>0.8.0-SNAPSHOT</version>
+      <version>0.9.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>2.2.1</version>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>2.9.1</version>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.kohsuke</groupId>
-						<artifactId>pgp-maven-plugin</artifactId>
-						<version>1.1</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.sonatype.plugins</groupId>
-						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.6.7</version>
-						<extensions>true</extensions>
-						<configuration>
-							<serverId>ossrh</serverId>
-							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-							<autoReleaseAfterClose>true</autoReleaseAfterClose>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-	<scm>
-		<url>https://github.com/tonivade/spring-boot-starter-respmvc</url>
-		<connection>scm:https://github.com/tonivade/spring-boot-starter-respmvc.git</connection>
-		<developerConnection>scm:git://github.com/tonivade/spring-boot-starter-respmvc.git</developerConnection>
-	</scm>
-	<licenses>
-		<license>
-			<name>The MIT Licence (MIT)</name>
-			<url>https://github.com/tonivade/spring-boot-starter-respmvc/blob/master/LICENSE</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	<developers>
-		<developer>
-			<id>tonivade</id>
-			<name>Antonio Muñoz</name>
-			<email>antoniogmc@gmail.com</email>
-		</developer>
-	</developers>
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.2.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.9.1</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>pgp-maven-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.7</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  <scm>
+    <url>https://github.com/tonivade/spring-boot-starter-respmvc</url>
+    <connection>scm:https://github.com/tonivade/spring-boot-starter-respmvc.git</connection>
+    <developerConnection>scm:git://github.com/tonivade/spring-boot-starter-respmvc.git</developerConnection>
+  </scm>
+  <licenses>
+    <license>
+      <name>The MIT Licence (MIT)</name>
+      <url>https://github.com/tonivade/spring-boot-starter-respmvc/blob/master/LICENSE</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>tonivade</id>
+      <name>Antonio Muñoz</name>
+      <email>antoniogmc@gmail.com</email>
+    </developer>
+  </developers>
 
 </project>
