@@ -16,7 +16,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.github.tonivade.resp.RespServer;
+import com.github.tonivade.resp.RespServerContext;
 import com.github.tonivade.resp.annotation.Command;
 import com.github.tonivade.resp.command.CommandSuite;
 import com.github.tonivade.resp.command.CommandWrapperFactory;
@@ -42,7 +42,7 @@ public class RespMvcAutoConfigurationTest {
   public void overridesPort() {
     AnnotationConfigApplicationContext context = loadConfiguration(EmptyConfiguration.class, "resp.port:8081");
 
-    assertThat(context.getBean(RespServer.class).getPort(), equalTo(8081));
+    assertThat(context.getBean(RespServerContext.class).getPort(), equalTo(8081));
 
     context.close();
   }

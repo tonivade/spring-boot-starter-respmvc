@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.github.tonivade.resp.RespServer;
+import com.github.tonivade.resp.RespServerContext;
 import com.github.tonivade.resp.command.CommandSuite;
 import com.github.tonivade.resp.command.CommandWrapperFactory;
 
@@ -20,10 +21,15 @@ import com.github.tonivade.resp.command.CommandWrapperFactory;
 @ConditionalOnClass(RespServer.class)
 @EnableConfigurationProperties(RespMvcProperties.class)
 public class RespMvcAutoConfiguration {
+  
+  @Bean
+  public RespServerContext respServerContext(RespMvcProperties properties, CommandSuite commands) {
+    return new RespServerContext(properties.getHost(), properties.getPort(), commands);
+  }
 
   @Bean(initMethod = "start", destroyMethod = "stop")
-  public RespServer server(RespMvcProperties properties, CommandSuite commands) {
-    return new RespServer(properties.getHost(), properties.getPort(), commands);
+  public RespServer server(RespServerContext serverContext) {
+    return new RespServer(serverContext);
   }
 
   @Bean
