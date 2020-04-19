@@ -23,8 +23,8 @@ import com.github.tonivade.resp.command.CommandWrapperFactory;
 public class RespMvcAutoConfiguration {
   
   @Bean
-  public RespServerContext respServerContext(RespMvcProperties properties, CommandSuite commands) {
-    return new RespServerContext(properties.getHost(), properties.getPort(), commands);
+  public RespServerContext respServerContext(RespMvcProperties properties, CommandSuite commandSuite) {
+    return new RespServerContext(properties.getHost(), properties.getPort(), commandSuite);
   }
 
   @Bean(initMethod = "start", destroyMethod = "stop")
@@ -34,13 +34,13 @@ public class RespMvcAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public CommandSuite commandSuite(ApplicationContext context) {
+  public CommandSuite defaultCommandSuite(ApplicationContext context) {
     return new SpringCommandSuite(context);
   }
 
   @Bean
   @ConditionalOnMissingBean
-  public CommandWrapperFactory commandWrapperFactory(AutowireCapableBeanFactory factory) {
+  public CommandWrapperFactory defaultCommandWrapperFactory(AutowireCapableBeanFactory factory) {
     return new SpringCommandWrapperFactory(factory);
   }
 }
