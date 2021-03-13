@@ -31,7 +31,8 @@ public class SpringCommandSuite extends CommandSuite {
 
   private void loadCommand(BeanDefinition beanDefinition) {
     try {
-      addCommand(loadClass(beanDefinition));
+      Class<?> loadClass = loadClass(beanDefinition);
+      addCommand(loadClass::newInstance);
     } catch (ClassNotFoundException ex) {
       throw new CannotLoadBeanClassException(beanDefinition.getResourceDescription(), /*bean name*/ null,
                                              beanDefinition.getBeanClassName(), ex);

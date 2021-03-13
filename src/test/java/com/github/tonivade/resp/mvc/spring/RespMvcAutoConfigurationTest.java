@@ -5,9 +5,9 @@
 package com.github.tonivade.resp.mvc.spring;
 
 import static com.github.tonivade.resp.protocol.RedisToken.string;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -30,31 +30,25 @@ public class RespMvcAutoConfigurationTest {
 
   @Test
   public void empty() {
-    AnnotationConfigApplicationContext context = loadConfiguration(EmptyConfiguration.class);
-
-    assertThat(context.getBeanNamesForType(CommandSuite.class).length, equalTo(1));
-    assertThat(context.getBean(CommandSuite.class).contains(TEST), is(false));
-
-    context.close();
+    try (AnnotationConfigApplicationContext context = loadConfiguration(EmptyConfiguration.class)) {
+      assertThat(context.getBeanNamesForType(CommandSuite.class).length, equalTo(1));
+      assertThat(context.getBean(CommandSuite.class).contains(TEST), is(true));
+    }
   }
 
   @Test
   public void overridesPort() {
-    AnnotationConfigApplicationContext context = loadConfiguration(EmptyConfiguration.class, "resp.port:8081");
-
-    assertThat(context.getBean(RespServerContext.class).getPort(), equalTo(8081));
-
-    context.close();
+    try (AnnotationConfigApplicationContext context = loadConfiguration(EmptyConfiguration.class, "resp.port:8081")) {
+      assertThat(context.getBean(RespServerContext.class).getPort(), equalTo(8081));
+    }
   }
 
   @Test
   public void nonEmpty() {
-    AnnotationConfigApplicationContext context = loadConfiguration(NonEmptyConfiguration.class);
-
-    assertThat(context.getBeanNamesForType(CommandSuite.class).length, equalTo(1));
-    assertThat(context.getBean(CommandSuite.class).contains(TEST), is(true));
-
-    context.close();
+    try(AnnotationConfigApplicationContext context = loadConfiguration(NonEmptyConfiguration.class)) {
+      assertThat(context.getBeanNamesForType(CommandSuite.class).length, equalTo(1));
+      assertThat(context.getBean(CommandSuite.class).contains(TEST), is(true));
+    }
   }
 
   private AnnotationConfigApplicationContext loadConfiguration(Class<?> config, String ... environment) {
