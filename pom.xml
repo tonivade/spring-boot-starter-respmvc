@@ -4,8 +4,8 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starters</artifactId>
-    <version>2.2.13.RELEASE</version>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.9.RELEASE</version>
   </parent>
   <groupId>com.github.tonivade</groupId>
   <artifactId>spring-boot-starter-respmvc</artifactId>
