@@ -76,7 +76,7 @@
     <dependency>
       <groupId>com.github.tonivade</groupId>
       <artifactId>resp-server</artifactId>
-      <version>0.17.0</version>
+      <version>0.18.1</version>
     </dependency>
   </dependencies>
   <profiles>
