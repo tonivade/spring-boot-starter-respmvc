@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2017, Antonio Gabriel Muñoz Conejo <antoniogmc at gmail dot com>
+ * Copyright (c) 2015-2023, Antonio Gabriel Muñoz Conejo <antoniogmc at gmail dot com>
  * Distributed under the terms of the MIT License
  */
 package com.github.tonivade.resp.mvc.spring;
@@ -21,7 +21,7 @@ import com.github.tonivade.resp.command.CommandWrapperFactory;
 @ConditionalOnClass(RespServer.class)
 @EnableConfigurationProperties(RespMvcProperties.class)
 public class RespMvcAutoConfiguration {
-  
+
   @Bean
   public RespServerContext respServerContext(RespMvcProperties properties, CommandSuite commandSuite) {
     return new RespServerContext(properties.getHost(), properties.getPort(), commandSuite);

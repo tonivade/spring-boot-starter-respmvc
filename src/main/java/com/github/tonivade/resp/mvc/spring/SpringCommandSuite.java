@@ -1,9 +1,10 @@
 /*
- * Copyright (c) 2015-2017, Antonio Gabriel Muñoz Conejo <antoniogmc at gmail dot com>
+ * Copyright (c) 2015-2023, Antonio Gabriel Muñoz Conejo <antoniogmc at gmail dot com>
  * Distributed under the terms of the MIT License
  */
 package com.github.tonivade.resp.mvc.spring;
 
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.CannotLoadBeanClassException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackages;
@@ -32,9 +33,12 @@ public class SpringCommandSuite extends CommandSuite {
   private void loadCommand(BeanDefinition beanDefinition) {
     try {
       Class<?> loadClass = loadClass(beanDefinition);
-      addCommand(loadClass::newInstance);
+      addCommand(loadClass.getDeclaredConstructor()::newInstance);
+    } catch (NoSuchMethodException ex) {
+      throw new BeanCreationException(beanDefinition.getResourceDescription(), null,
+                                      "not empty constructor found for class " + beanDefinition.getBeanClassName(), ex);
     } catch (ClassNotFoundException ex) {
-      throw new CannotLoadBeanClassException(beanDefinition.getResourceDescription(), /*bean name*/ null,
+      throw new CannotLoadBeanClassException(beanDefinition.getResourceDescription(), null,
                                              beanDefinition.getBeanClassName(), ex);
     }
   }
