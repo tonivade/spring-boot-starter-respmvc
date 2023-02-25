@@ -4,6 +4,9 @@
  */
 package com.github.tonivade.resp.mvc.spring;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.CannotLoadBeanClassException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -33,7 +36,16 @@ public class SpringCommandSuite extends CommandSuite {
   private void loadCommand(BeanDefinition beanDefinition) {
     try {
       Class<?> loadClass = loadClass(beanDefinition);
-      addCommand(loadClass.getDeclaredConstructor()::newInstance);
+      Constructor<?> declaredConstructor = loadClass.getDeclaredConstructor();
+      addCommand(() -> {
+        try {
+          return declaredConstructor.newInstance();
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+            | InvocationTargetException ex) {
+          throw new BeanCreationException(beanDefinition.getResourceDescription(), null,
+                                      "command cannot be instantiated " + beanDefinition.getBeanClassName(), ex);
+        }
+      });
     } catch (NoSuchMethodException ex) {
       throw new BeanCreationException(beanDefinition.getResourceDescription(), null,
                                       "not empty constructor found for class " + beanDefinition.getBeanClassName(), ex);
